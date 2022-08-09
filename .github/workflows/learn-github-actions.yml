@@ -28,7 +28,7 @@ jobs:
           command: config
           globs: |
             .markdownlint-cli2.yaml
-            content/en/docs/*.md
+            content/en/docs/**/*.md
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
         with:
