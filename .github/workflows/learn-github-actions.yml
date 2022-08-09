@@ -24,7 +24,7 @@ jobs:
       - name: Lint content
         uses: DavidAnson/markdownlint-cli2-action@v6
         continue-on-error: true
-          with:
+        with:
           command: config
           globs: |
             .markdownlint-cli2.yaml
@@ -32,8 +32,8 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
         with:
-            commit-message: Lint files
-            title: Lint files
-            body: |
-              - Lint files
-            branch: lint-files
+          commit-message: Lint files
+          title: Lint files
+          body: |
+            - Lint files
+          branch: lint-files
