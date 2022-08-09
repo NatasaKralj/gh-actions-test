@@ -33,7 +33,7 @@ jobs:
         uses: peter-evans/create-pull-request@v4
         with:
           commit-message: Lint files
-          title: [Auto] Lint files
+          title: '[Auto] Lint files'
           body: |
             - Lint files
           branch: lint-files
