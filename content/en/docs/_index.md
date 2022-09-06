@@ -6,8 +6,10 @@ cascade:
     - no_list: true
 ---
 
-### This is my test header
+### This is my test header {#custom-anchor}
 
 Some text
 
 ###### Hello, another header
+
+I'm calling my custom anchor [here](#custom-anchor)
