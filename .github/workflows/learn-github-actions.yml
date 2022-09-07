@@ -15,6 +15,8 @@ jobs:
   test_all:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    outputs:
+      output1: ${{ step.lint_test_output.outputs.test }}
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: My time test
@@ -22,6 +24,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
       - name: Lint content
+        id: lint_test_output
         uses: DavidAnson/markdownlint-cli2-action@v6
         continue-on-error: true
         with:
@@ -35,5 +38,5 @@ jobs:
           commit-message: Lint files
           title: '[Auto] Lint files'
           body: |
-            - Lint files
+            - Lint files ${{ test_all.outputs.output1 }}
           branch: lint-files
