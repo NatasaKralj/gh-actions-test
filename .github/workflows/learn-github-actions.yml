@@ -38,5 +38,5 @@ jobs:
           commit-message: Lint files
           title: '[Auto] Lint files'
           body: |
-            - Lint files $my-log
+            - Lint files ${{ env.my-log }}
           branch: lint-files
