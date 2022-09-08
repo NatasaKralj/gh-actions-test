@@ -33,7 +33,7 @@ jobs:
             .markdownlint-cli2.yaml
             content/en/docs/**/*.md
       - name: Grab log
-        run: echo "${{ steps.lint_test_output.core.info }}"
+        run: echo "::set-output name=LOG_NAME::${{ steps.lint_test_output.core.info }}"
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
         with:
