@@ -23,7 +23,7 @@ jobs:
       - uses: actions/checkout@v3
       - name: Lint content
         id: lint_test_output
-        uses: DavidAnson/markdownlint-cli2-action@v6
+        uses: DavidAnson/markdownlint-cli2-action@v7
         continue-on-error: true
         with:
           command: config
@@ -36,5 +36,5 @@ jobs:
           commit-message: Lint files
           title: '[Auto] Lint files'
           body: |
-            - Lint files ${{ steps.lint_test_output.outputs }}
+            - Lint files ${{ steps.lint_test_output.core.info }}
           branch: lint-files
