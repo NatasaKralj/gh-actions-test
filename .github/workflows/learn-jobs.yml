@@ -1,0 +1,45 @@
+# This is a basic workflow to help you get started with Actions
+
+name: learn-jobs
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow at a specific time
+  schedule:
+    - cron: '0 15 * * 3'
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # The type of runner that the job will run on
+  runs-on: ubuntu-latest
+  # 1st job: echo test
+  echo_test:
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: My test
+        run: echo "This is an ECHO test"
+  checkout_repo:
+    steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+  lint_content:
+    steps:
+      - name: Lint content
+        uses: DavidAnson/markdownlint-cli2-action@v6
+        continue-on-error: true
+        with:
+          command: config
+          globs: |
+            .markdownlint-cli2.yaml
+            content/en/docs/**/*.md
+  create_pr:
+    
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v4
+        with:
+          commit-message: Lint files
+          title: '[Auto] Lint files'
+          body: |
+            - Lint files
+          branch: lint-files
