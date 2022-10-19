@@ -6,7 +6,7 @@ name: learn-github-actions
 on:
   # Triggers the workflow at a specific time
   schedule:
-    - cron: '0 15 * * 3'
+    - cron: '0 15 * * 4'
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -24,7 +24,7 @@ jobs:
       - name: Lint content
         id: lint_test_output
         env:
-          my-log: ${{ steps.lint_test_output.info }}
+          my-log: ${{ $GITHUB_STEP_SUMMARY }}
         uses: DavidAnson/markdownlint-cli2-action@v7
         continue-on-error: true            
         with:
@@ -32,14 +32,11 @@ jobs:
           globs: |
             .markdownlint-cli2.yaml
             content/en/docs/**/*.md
-      - name: Grab log
-        run: |
-          echo ::set-output name=LOG_NAME::${{ steps.lint_test_output.info }}
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
         with:
-          commit-message: Lint files
-          title: '[Auto] Lint files'
+          commit-message: Lint docs
+          title: '[Auto] Lint docs'
           body: |
-            - Lint files ${{ steps.lint_test_output.outputs.LOG_NAME }} my env: ${{ env.my-log }}
-          branch: lint-files
+            - Lint docs ${{ steps.lint_test_output.env.my-log }}
+          branch: lint-docs
