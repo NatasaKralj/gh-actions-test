@@ -24,7 +24,7 @@ jobs:
       - name: Lint content
         id: lint_test_output
         env:
-          my-log: ${{ $GITHUB_STEP_SUMMARY }}
+          my-log: $GITHUB_STEP_SUMMARY
         uses: DavidAnson/markdownlint-cli2-action@v7
         continue-on-error: true            
         with:
