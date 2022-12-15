@@ -25,13 +25,15 @@ jobs:
         id: echo-log
         run: |
           chmod +x ./tmp.log
-          VER=$(cat << '\n' ./tmp.log)
-          echo "log_output=$VER" >> $GITHUB_ENV
+          VER=$(cat << EOF ./tmp.log)
+          echo "VER<<EOF" >> $GITHUB_ENV
+          echo "$VER" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
         with:
           commit-message: Lint docs
           title: '[Auto] Lint docs'
           body: |
-            - Lint docs ${{ env.log_output }}
+            - Lint docs ${{ env.VER }}
           branch: lint-docs
