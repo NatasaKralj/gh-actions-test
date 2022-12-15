@@ -25,7 +25,8 @@ jobs:
         id: echo-log
         run: |
           chmod +x ./tmp.log
-          VER=$(cat ./tmp.log)
+          LOG=$(cat ./tmp.log)
+          VER=${LOG//[$'\t\r\n']} && VER=${VER%%*( )}
           echo "log_output=$VER" >> $GITHUB_ENV
       #- name: Lint content
       #  id: lint_test_output
