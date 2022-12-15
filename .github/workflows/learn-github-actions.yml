@@ -37,7 +37,7 @@ jobs:
       - name: echo output
         id: echo_output
         run: |
-          echo ${{ outputs.lint_output }}
+          echo ${{ needs.test_all.outputs.lint_output }}
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
         with:
