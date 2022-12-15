@@ -20,7 +20,7 @@ jobs:
           chmod +x ./tmp.log
       - name: echo-log
         id: echo-log
-        run: log_output=cat ./tmp.log >> $GITHUB_OUTPUT
+        run: log_output=./tmp.log >> $GITHUB_OUTPUT
       - name: Lint content
         id: lint_test_output
         uses: DavidAnson/markdownlint-cli2-action@v7
