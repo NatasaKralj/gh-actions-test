@@ -18,13 +18,11 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: My time test
-        run: echo "This step will be run on Thursdays at 16 CET"
+        run: echo "This step will be run on Thursdays at 16 CET", "my_log=" >> $GITHUB_ENV
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
       - name: Lint content
         id: lint_test_output
-        env:
-          my-log: ${{ steps.lint_test_output.info }}
         uses: DavidAnson/markdownlint-cli2-action@v7
         continue-on-error: true            
         with:
@@ -33,7 +31,7 @@ jobs:
             .markdownlint-cli2.yaml
             content/en/docs/**/*.md
       - name: Grab log
-        run: echo "{name}={LOG_NAME}" >> ${{ steps.lint_test_output.info }}
+        run: echo ${{ env.my_log }} >> ${{ steps.lint_test_output.info }}
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
         with:
