@@ -27,3 +27,11 @@ jobs:
           globs: |
             .markdownlint-cli2.yaml
             content/en/docs/**/*.md
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v4
+        with:
+          commit-message: Lint docs
+          title: '[Auto] Lint docs'
+          body: |
+            - Lint docs $(cat ./tmp.log)
+          branch: lint-docs
