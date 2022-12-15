@@ -38,5 +38,5 @@ jobs:
           commit-message: Lint docs
           title: '[Auto] Lint docs'
           body: |
-            - Lint docs ${{ steps.lint_test_output.outputs.* }}
+            - Lint docs $steps.lint_test_output.outputs.*
           branch: lint-docs
