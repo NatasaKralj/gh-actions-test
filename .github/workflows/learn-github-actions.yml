@@ -18,7 +18,10 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: My time test
-        run: echo "This step will be run on Thursdays at 16 CET", "my_log=" >> $GITHUB_ENV
+        run: echo "This step will be run on Thursdays at 16 CET",
+      - name: My log test
+        id: log_create
+        run: echo "my_log=" >> $GITHUB_ENV
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
       - name: Lint content
