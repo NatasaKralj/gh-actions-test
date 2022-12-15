@@ -25,7 +25,7 @@ jobs:
         id: lint_test_output
         env:
           my-log: $GITHUB_STEP_SUMMARY
-        uses: DavidAnson/markdownlint-cli2-action@v7
+        uses: DavidAnson/markdownlint-cli2-action@v7 >> $GITHUB_OUTPUT
         continue-on-error: true            
         with:
           command: config
