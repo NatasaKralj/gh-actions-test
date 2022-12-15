@@ -17,10 +17,13 @@ jobs:
       - name: run-some-command
         run: |
           echo "Hello world!" | tee ./tmp.log
-          chmod +x ./tmp.log
+         
       - name: echo-log
         id: echo-log
-        run: log_output=./tmp.log >> $GITHUB_OUTPUT
+        run: |
+          chmod +x ./tmp.log
+          VER=$(cat ./tmp.log)
+          echo "log_output=$VER" >> $GITHUB_ENV
       - name: Lint content
         id: lint_test_output
         uses: DavidAnson/markdownlint-cli2-action@v7
@@ -36,5 +39,5 @@ jobs:
           commit-message: Lint docs
           title: '[Auto] Lint docs'
           body: |
-            - Lint docs ${{ $GITHUB_OUTPUT }}
+            - Lint docs ${{ env.log_output }}
           branch: lint-docs
