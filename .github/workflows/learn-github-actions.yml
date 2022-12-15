@@ -25,13 +25,17 @@ jobs:
         id: lint_test_output
         env:
           my-log: $GITHUB_STEP_SUMMARY
-        uses: DavidAnson/markdownlint-cli2-action@v7 >> $GITHUB_OUTPUT
+        uses: DavidAnson/markdownlint-cli2-action@v7
         continue-on-error: true            
         with:
           command: config
           globs: |
             .markdownlint-cli2.yaml
             content/en/docs/**/*.md
+      - name: echo output
+        id: echo_output
+        run: |
+          echo ${{join(steps.lint_test_output.outputs.*, '\n')}}
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
         with:
