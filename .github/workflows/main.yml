@@ -17,7 +17,7 @@ jobs:
       - name: run-some-command
         run: echo "Hello world!" | tee ./tmp.log
       - name: echo-log
-        run: echo cat ./tmp.log
+        run: cat ./tmp.log
       - name: Lint content
         id: lint_test_output
         uses: DavidAnson/markdownlint-cli2-action@v7
