@@ -34,12 +34,12 @@ jobs:
             content/en/docs/**/*.md
       - name: Grab log
         run: |
-          echo ::set-output name=LOG_NAME::${{ steps.lint_test_output.info }}
+          echo "{name}={LOG_NAME}" >> ${{ steps.lint_test_output.info }}
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
         with:
           commit-message: Lint files
           title: '[Auto] Lint files'
           body: |
-            - Lint files ${{ steps.lint_test_output.outputs.LOG_NAME }} my env: ${{ env.my-log }}
+            - Lint files ${{ steps.lint_test_output.LOG_NAME }} my env: ${{ env.my-log }}
           branch: lint-files
