@@ -14,25 +14,28 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+      - run: npm install markdownlint-cli2 --global
       - name: run-some-command
         run: |
-          echo "Hello world!" | tee ./tmp.log
-         
+          markdownlint-cli2-config ".markdownlint-cli2.yaml" "content/en/docs/**/*.md" 2>&1 | tee ./tmp.log
       - name: echo-log
         id: echo-log
         run: |
           chmod +x ./tmp.log
           VER=$(cat ./tmp.log)
           echo "log_output=$VER" >> $GITHUB_ENV
-      - name: Lint content
-        id: lint_test_output
-        uses: DavidAnson/markdownlint-cli2-action@v7
-        continue-on-error: true            
-        with:
-          command: config
-          globs: |
-            .markdownlint-cli2.yaml
-            content/en/docs/**/*.md
+      #- name: Lint content
+      #  id: lint_test_output
+      #  uses: DavidAnson/markdownlint-cli2-action@v7
+      #  continue-on-error: true            
+      #  with:
+      #    command: config
+       #   globs: |
+       #     .markdownlint-cli2.yaml
+       #     content/en/docs/**/*.md
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
         with:
