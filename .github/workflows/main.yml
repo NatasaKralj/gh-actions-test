@@ -15,7 +15,9 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
       - name: run-some-command
-        run: echo "Hello world!" | tee ./tmp.log
+        run: |
+          echo "Hello world!" | tee ./tmp.log
+          chmod +x ./tmp.log
       - name: echo-log
         id: echo-log
         run: log_output=cat ./tmp.log >> $GITHUB_OUTPUT
