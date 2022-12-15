@@ -23,8 +23,6 @@ jobs:
           markdownlint-cli2-config ".markdownlint-cli2.yaml" "content/en/docs/**/*.md" 2>&1 | tee ./tmp.log
       - name: echo-log
         id: echo-log
-        env:
-          LOG1: $(cat ./tmp.log)
         run: |
           chmod +x ./tmp.log
           LOG=$(cat ./tmp.log)
@@ -45,5 +43,5 @@ jobs:
           commit-message: Lint docs
           title: '[Auto] Lint docs'
           body: |
-            - Lint docs ${{ steps.echo-log.env.LOG1 }}
+            - Lint docs ${{ env.log_output }}
           branch: lint-docs
