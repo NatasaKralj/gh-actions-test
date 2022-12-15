@@ -37,12 +37,12 @@ jobs:
       - name: echo output
         id: echo_output
         run: |
-          echo ${{ needs.test_all.outputs.lint_output }}
+          echo ${{ steps.lint_test_output.outputs.lint_output }} ${{join(steps.lint_test_output.outputs.github_output, '\n')}}
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
         with:
           commit-message: Lint docs
           title: '[Auto] Lint docs'
           body: |
-            - Lint docs ${{join(steps.lint_test_output.outputs.*, '\n')}}
+            - Lint docs ${{join(steps.lint_test_output.outputs.github_output, '\n')}}
           branch: lint-docs
