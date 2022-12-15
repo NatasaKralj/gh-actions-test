@@ -45,5 +45,5 @@ jobs:
           commit-message: Lint docs
           title: '[Auto] Lint docs'
           body: |
-            - Lint docs ${{ env.LOG1 }}
+            - Lint docs ${{ steps.echo-log.env.LOG1 }}
           branch: lint-docs
