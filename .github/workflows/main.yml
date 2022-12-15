@@ -33,5 +33,5 @@ jobs:
           commit-message: Lint docs
           title: '[Auto] Lint docs'
           body: |
-            - Lint docs $(cat ./tmp.log)
+            - Lint docs ${{(cat ./tmp.log)}}
           branch: lint-docs
