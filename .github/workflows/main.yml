@@ -17,7 +17,8 @@ jobs:
       - name: run-some-command
         run: echo "Hello world!" | tee ./tmp.log
       - name: echo-log
-        run: cat ./tmp.log
+        id: echo-log
+        run: log_output=cat ./tmp.log >> $GITHUB_OUTPUT
       - name: Lint content
         id: lint_test_output
         uses: DavidAnson/markdownlint-cli2-action@v7
@@ -33,5 +34,5 @@ jobs:
           commit-message: Lint docs
           title: '[Auto] Lint docs'
           body: |
-            - Lint docs ${{(cat ./tmp.log)}}
+            - Lint docs ${{ steps.echo-log.outputs.*}}
           branch: lint-docs
