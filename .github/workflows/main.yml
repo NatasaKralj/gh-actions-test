@@ -25,7 +25,7 @@ jobs:
         id: echo-log
         run: |
           chmod +x ./tmp.log
-          VER=$(cat << EOF ./tmp.log)
+          VER=$(cat << '\n' ./tmp.log)
           echo "log_output=$VER" >> $GITHUB_ENV
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
