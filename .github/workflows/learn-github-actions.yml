@@ -35,7 +35,7 @@ jobs:
       - name: echo output
         id: echo_output
         run: |
-          echo ${{join(steps.lint_test_output.outputs.*, '\n')}}
+          echo ${{ steps.lint_test_output.env.my-log }}
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
         with:
