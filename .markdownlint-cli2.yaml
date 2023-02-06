@@ -1,7 +1,7 @@
 # Fix any fixable errors
 fix: true
 
-globs: ["!content/en/docs/developerportal/test/indentation.md","content/en/docs/**/*.md"]
+globs: ["content/en/docs/**/*.md","!test/indentation.md"]
 
 # Example markdownlint YAML configuration with all properties set to their default value
 config:
