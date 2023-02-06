@@ -27,7 +27,7 @@ jobs:
         run: npm install markdownlint-cli2 --global
       - name: Run markdownlint-cli2
         run: |
-          markdownlint-cli2-config ".markdownlint-cli2.yaml" "content/en/docs/**/*.md" ["content/en/docs/developerportal/test/indentation.md"] 2>&1 | tee ./tmp.log
+          markdownlint-cli2-config ".markdownlint-cli2.yaml" "content/en/docs/**/*.md" [!"content/en/docs/developerportal/test/indentation.md"] 2>&1 | tee ./tmp.log
       - name: Grab markdownlint log
         id: echo-log
         run: |
