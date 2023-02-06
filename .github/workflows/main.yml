@@ -13,8 +13,6 @@ jobs:
   lint-pr:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-    # Check if the event is not triggered by a fork
-    if: github.event.schedule.head.repo.full_name == github.repository | github.event.workflow_dispatch.head.repo.full_name == github.repository 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -29,7 +27,7 @@ jobs:
         run: npm install markdownlint-cli2 --global
       - name: Run markdownlint-cli2
         run: |
-          markdownlint-cli2-config ".markdownlint-cli2.yaml" "content/en/docs/**/*.md" 2>&1 | tee ./tmp.log
+          markdownlint-cli2-config ".markdownlint-cli2.yaml" "content/en/docs/**/*.md" ["content/en/docs/developerportal/test/indentation.md"] 2>&1 | tee ./tmp.log
       - name: Grab markdownlint log
         id: echo-log
         run: |
