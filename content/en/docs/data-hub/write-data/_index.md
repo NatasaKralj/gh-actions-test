@@ -27,10 +27,10 @@ Note the following terminology differences described in the table below:
 | Update   | Updatable  |
 | Delete   | Deletable  |
 
-
 ## 2 Prerequisites
 
 Before starting this how-to, make sure you have completed the following prerequisites:
+
 * Install Studio Pro version [9.13.0 or above](https://marketplace.mendix.com/link/studiopro/)
 
 * Understand how read-only external entities behave by reading [How to Share Data Between Apps](/data-hub/share-data/)

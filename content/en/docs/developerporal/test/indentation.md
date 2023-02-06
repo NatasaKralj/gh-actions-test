@@ -212,6 +212,7 @@ Lists in alerts:
 ### 2.1 Block Quotes
 
 >A block of text
+>
 ### 2.2 TODOs and Comments
 
 Two ways to add comments:
@@ -397,4 +398,3 @@ A new list
 {{% button color="outline-light" href="https://getbootstrap.com/docs/4.6/components/buttons/" text="Light" title="What do you think of this button?" %}}
 
 {{% button color="outline-dark" href="https://getbootstrap.com/docs/4.6/components/buttons/" text="Dark" title="What do you think of this button?" %}}
-
