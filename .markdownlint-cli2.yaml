@@ -1,6 +1,8 @@
 # Fix any fixable errors
 fix: true
 
+globs: ["!**test/indentation.md"]
+
 # Example markdownlint YAML configuration with all properties set to their default value
 config:
   # Default state for all rules
