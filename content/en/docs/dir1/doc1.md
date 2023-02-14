@@ -1,5 +1,6 @@
 ---
 title: "My DOC1 test file"
+url: /moved-url/
 ---
 
 Hello! This is another test!
